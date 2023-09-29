@@ -1,0 +1,38 @@
+MODEL:
+  META_ARCHITECTURE: "CustomRCNN"
+  RPN:
+    PRE_NMS_TOPK_TEST: 6000
+    POST_NMS_TOPK_TEST: 1000
+  ROI_HEADS:
+    NAME: "CustomRes5ROIHeads"
+    SCORE_THRESH_TEST: 0.15
+  RESNETS:
+    DEPTH: 50
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: True
+    USE_SIGMOID_CE: True
+    USE_ZEROSHOT_CLS: True
+    ZEROSHOT_WEIGHT_PATH: 'datasets/metadata/coco_clip_a+cname.npy'
+    IGNORE_ZERO_CATS: True
+    CAT_FREQ_PATH: 'datasets/coco/zero-shot/instances_train2017_seen_2_oriorder_cat_info.json'
+DATASETS:
+  TRAIN: ("coco_zeroshot_train_oriorder",)
+  TEST: ("coco_generalized_zeroshot_val",)
+INPUT:
+  MIN_SIZE_TRAIN: (800,)
+MLR:
+  NORMED_EMBEDDING: True
+  ENABLE_MLR: True
+  ENABLE_IMAGE_KD: True
+  EMBEDDING_PATH: "resources/coco_there_is_a_cls_vitb32.pt"
+  MLR_LOSS_WEIGHT: 1.0
+  LOGIT_SCALE: 20.0
+  CLIP_VERSION: "ViT-B/32"
+  DATASET: "COCO"
+  GLOBAL_DIM: 1280
+  NUM_CLASSES: 80
+  GAMMA: 0.7
+  CLIP_IE_INFERENCE: True
+  CONFIG_PATH: "configs/ovmlr_coco_base_caption.yaml"
+VERSION: 2
+FP16: True
