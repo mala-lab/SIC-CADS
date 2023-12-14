@@ -36,19 +36,19 @@ and [Detic](https://dl.fbaipublicfiles.com/detic/Detic_OVCOCO_CLIP_R50_1x_max-si
 Train on LVIS-Base
 ```
 python train_net.py --resume --dist-url auto --num-gpus 4 \
-    --config configs/ovmlr_lvis_base.yaml OUTPUT_DIR training_dir/ovmlr_lvis_base \
+    --config configs/ovmlr_lvis_base.yaml OUTPUT_DIR training_dir/ovmlr_lvis_base 
 ``` 
 
 Train on LVIS-Base + ImageNet-21K
 ```
 python train_net.py --resume --dist-url auto --num-gpus 4 \
-    --config configs/ovmlr_lvis_base_in21k.yaml OUTPUT_DIR training_dir/ovmlr_lvis_base_in21k \
+    --config configs/ovmlr_lvis_base_in21k.yaml OUTPUT_DIR training_dir/ovmlr_lvis_base_in21k 
 ``` 
 
 Train on COCO-Base + COCO Caption
 ```
 python train_net.py --resume --dist-url auto --num-gpus 4 \
-    --config configs/ovmlr_coco_base_caption.yaml OUTPUT_DIR training_dir/ovmlr_coco_base_caption \
+    --config configs/ovmlr_coco_base_caption.yaml OUTPUT_DIR training_dir/ovmlr_coco_base_caption 
 ``` 
 
 ## CADS for BoxSup and Detic
@@ -57,35 +57,35 @@ Merge the weight of MLR model and pretrained OVOD models on OV-LVIS
 # for Boxsup
 python tools/merge_weights.py --weight_path_mlr training_dir/ovmlr_lvis_base/model_final.pth \
     --weight_path_ovod models/BoxSup-C2_Lbase_CLIP_R5021k_640b64_4x.pth \
-    --output_path models/BoxSup-C2_Lbase_CLIP_R5021k_640b64_4x_mlr.pth \
+    --output_path models/BoxSup-C2_Lbase_CLIP_R5021k_640b64_4x_mlr.pth 
 
 # for Detic
 python tools/merge_weights.py --weight_path_mlr training_dir/ovmlr_lvis_base_in21k/model_final.pth  \
     --weight_path_ovod models/Detic_LbaseI_CLIP_R5021k_640b64_4x_ft4x_max-size.pth \
-    --output_path models/Detic_LbaseI_CLIP_R5021k_640b64_4x_ft4x_max-size_mlr.pth \
+    --output_path models/Detic_LbaseI_CLIP_R5021k_640b64_4x_ft4x_max-size_mlr.pth 
 ``` 
 
 Evaluation on OV-LVIS
 ```
 python train_net.py --resume --eval-only --dist-url auto --num-gpus 4 \
     --config configs/boxsup_cads_ovlvis.yaml OUTPUT_DIR training_dir/boxsup_lvis_base_cads \
-    MODEL.WEIGHTS models/BoxSup-C2_Lbase_CLIP_R5021k_640b64_4x_mlr.pth \
+    MODEL.WEIGHTS models/BoxSup-C2_Lbase_CLIP_R5021k_640b64_4x_mlr.pth 
 
 python train_net.py --resume --eval-only --dist-url auto --num-gpus 4 \
     --config configs/boxsup_cads_ovlvis.yaml OUTPUT_DIR training_dir/detic_lvis_cads \
-    MODEL.WEIGHTS models/Detic_LbaseI_CLIP_R5021k_640b64_4x_ft4x_max-size_mlr.pth \
+    MODEL.WEIGHTS models/Detic_LbaseI_CLIP_R5021k_640b64_4x_ft4x_max-size_mlr.pth 
 ``` 
 
 Merge the weight of MLR model and pretrained OVOD models on OV-COCO
 ```
 python tools/merge_weights.py --weight_path_mlr training_dir/ovmlr_coco_base_caption/model_final.pth \
     --weight_path_ovod models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption.pth \
-    --output_path models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption_mlr.pth \
+    --output_path models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption_mlr.pth 
 ``` 
 Evaluation on OV-COCO
 ```
 python train_net.py --resume --eval-only --dist-url auto --num-gpus 4 \
     --config configs/detic_cads_ovcoco.yaml OUTPUT_DIR training_dir/detic_ovcoco_cads \
-    MODEL.WEIGHTS models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption_mlr.pth \
+    MODEL.WEIGHTS models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption_mlr.pth 
 ``` 
 

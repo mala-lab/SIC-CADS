@@ -11,7 +11,6 @@ log.txt
 /models
 /script
 /training_dir
-/training_dir_
 /figs
 /vis_image
 /detectron2
