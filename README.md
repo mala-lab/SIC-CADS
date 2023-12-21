@@ -1,5 +1,4 @@
-# Simple Image-level Classification Improves Open-vocabulary Object Detection
-
+# Simple Image-level Classification Improves Open-vocabulary Object Detection *([arXiv 2312.10439](http://arxiv.org/abs/2312.10439))* 
 ## Installation
 Our environment: Unbuntu18.04, cuda10.2, python3.8, pytorch1.12.0, detectron2.0.6
 
@@ -89,3 +88,6 @@ python train_net.py --resume --eval-only --dist-url auto --num-gpus 4 \
     MODEL.WEIGHTS models/Detic_OVCOCO_CLIP_R50_1x_max-size_caption_mlr.pth 
 ``` 
 
+## Acknowledgment
+
+Our code is mainly based on [Detic](https://github.com/facebookresearch/Detic) and [Detectron2](https://github.com/facebookresearch/detectron2).
