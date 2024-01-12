@@ -91,3 +91,13 @@ python train_net.py --resume --eval-only --dist-url auto --num-gpus 4 \
 ## Acknowledgment
 
 Our code is mainly based on [Detic](https://github.com/facebookresearch/Detic) and [Detectron2](https://github.com/facebookresearch/detectron2).
+
+## Citation
+```bibtex
+@inproceedings{fang2023simple,
+  title={Simple Image-level Classification Improves Open-vocabulary Object Detection},
+  author={Fang, Ruohuan and Pang, Guansong and Bai, Xiao},
+  booktitle={The 38th Annual AAAI Conference on Artificial Intelligence},
+  year={2024}
+}
+```
